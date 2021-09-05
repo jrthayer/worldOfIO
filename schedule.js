@@ -241,7 +241,7 @@ export function createDaySchedule(day, daySchedule) {
         showNameFormatted = showNameFormatted.replace("'", "");
         showNameFormatted =
             showNameFormatted[0].toLowerCase() + showNameFormatted.substring(1);
-        showImg.src = `/images/${showNameFormatted}.png`;
+        showImg.src = `./images/${showNameFormatted}.png`;
         data.appendChild(showImg);
 
         let show = document.createElement("div");
