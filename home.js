@@ -53,7 +53,7 @@ function setNextShow() {
         showNameFormatted[0].toLowerCase() + showNameFormatted.substring(1);
     console.log(showNameFormatted);
     let showImg = countdownElement.querySelector("video");
-    showImg.setAttribute("src", `videos/${showNameFormatted}.mp4`);
+    showImg.setAttribute("src", `./videos/${showNameFormatted}.mp4`);
     console.log(showImg);
     let countdownHTML = countdown.create(showTime, showName, daysTill);
     countdownElement
