@@ -1,0 +1,366 @@
+:root {
+    --navHeight: 80px;
+    --top-z-index: 25;
+    --color700-num: 7, 6, 32;
+    --color700: rgb(7, 6, 32);
+    --color400-num: 135, 207, 201;
+    --color400: rgb(135, 207, 201);
+    --textColor: hsl(175, 43%, 97%);
+}
+
+* {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html,
+body {
+    width: 100%;
+    margin: 0;
+    background-color: var(--textColor);
+    color: var(--textColor);
+}
+
+a,
+button {
+    cursor: pointer;
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    user-select: auto;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    background-image: linear-gradient(
+        0deg,
+        rgba(var(--color700-num), 0) 0%,
+        rgba(var(--color700-num), 0.3) 20%,
+        var(--color700) 70%
+    );
+    z-index: 30;
+}
+nav {
+    display: flex;
+    align-items: center;
+    height: var(--navHeight);
+    max-width: 1400px;
+    width: 100%;
+    /* width: 80%; */
+    margin: 0 auto;
+    font-size: 1.5rem;
+    opacity: 1;
+    place-content: flex-end;
+}
+
+nav a {
+    padding: 0.5rem 1rem;
+}
+nav a:first-of-type {
+    height: var(--navHeight);
+    padding: 0;
+    margin-right: auto;
+}
+
+#logo {
+    height: 100%;
+    width: auto;
+}
+
+footer {
+    height: calc(4vh + 60px);
+    border-top: solid 2px var(--textColor);
+    background-color: var(--color700);
+}
+
+iframe {
+    width: 100%;
+}
+
+img {
+    width: 100%;
+}
+
+h1 {
+    font-size: 3rem;
+    text-transform: uppercase;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none;
+    color: var(--textColor);
+}
+
+a:hover {
+    color: var(--color400);
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-track {
+    border-left: solid 2px var(--color700);
+    background-color: var(--textColor);
+}
+
+::-webkit-scrollbar-track:horizontal {
+    border: none;
+}
+
+::-webkit-scrollbar-thumb {
+    border: 6px solid transparent;
+    border-radius: 20px;
+    background-clip: content-box;
+    background-color: var(--color700);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+}
+
+#hero a {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    padding: 0.8rem;
+    border-radius: 0.9rem;
+    text-transform: uppercase;
+    transform: translate(-50%, -50%);
+    background-color: var(--textColor);
+    color: var(--color700);
+    z-index: 15;
+}
+
+#hero a:hover {
+    background-color: var(--color400);
+}
+
+#hero i {
+    padding-right: 0.5rem;
+}
+
+.section {
+    position: relative;
+    min-height: 100px;
+    height: 100vh;
+    width: 100%;
+    padding-bottom: 0;
+    overflow: hidden;
+}
+
+.fullscreenAsset {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    height: auto;
+
+    width: 100%;
+
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.bannerHeight {
+    height: 100% !important;
+    width: auto !important;
+}
+
+.socialLinks {
+    position: fixed;
+    bottom: 2%;
+    left: 50%;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 500px;
+
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    transform: translateX(-50%);
+
+    background-color: rgba(var(--color700-num), 0.8);
+
+    z-index: var(--top-z-index);
+}
+
+.socialLinks a {
+    padding: 0.5rem 1rem;
+    font-size: 10px;
+}
+
+.countdown-data {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    border-top: solid 2px var(--textColor);
+    border-bottom: solid 2px var(--textColor);
+    transform: translateY(-58%);
+    background-color: var(--color700);
+    z-index: 20;
+}
+.countdown-data > * {
+    padding: 1rem;
+    font-size: 7vh;
+}
+
+#countdown {
+    width: 100%;
+    text-align: center;
+}
+
+#countdown-container h1 {
+    width: 100%;
+    padding-bottom: 1rem;
+    border-bottom: solid 2px var(--textColor);
+
+    margin: 0;
+    text-align: center;
+}
+
+/* 
+===== 4.4 Schedule =====
+*/
+#schedule-section {
+    height: fit-content;
+    background-color: var(--color700);
+}
+
+#schedule-container button {
+    position: absolute;
+    color: var(--textColor);
+    background-color: transparent;
+    border: none;
+    font-size: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+}
+
+#schedule-container button:first-of-type {
+    left: -60px;
+}
+
+#schedule-container button:last-of-type {
+    right: -60px;
+}
+
+#schedule-container > h1 {
+    padding: 1rem 0;
+    border-top: 2px solid var(--textColor);
+    border-bottom: 2px solid var(--textColor);
+    text-align: center;
+}
+
+.schedule-carousel {
+    position: relative;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    width: 80%;
+}
+
+.schedule-carousel-days {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+
+    width: 100%;
+    padding: 2rem 0;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+
+    cursor: grab;
+    overflow-x: scroll;
+}
+
+.schedule-carousel-days img {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.schedule-carousel-days::-webkit-scrollbar-thumb {
+    border: 6px solid transparent;
+    border-radius: 20px;
+    background-clip: content-box;
+    background-color: var(--textColor);
+}
+
+.schedule-carousel-days::-webkit-scrollbar-track {
+    border-left: none;
+    background-color: transparent;
+}
+
+.row {
+    flex: 1 1 100%;
+    max-width: 500px;
+    min-width: 100%;
+
+    width: 100vw;
+    text-align: center;
+    background-color: var(--color700);
+    color: var(--textColor);
+}
+
+.data img {
+    width: 100%;
+}
+
+.gameInfo {
+    display: flex;
+    padding: 0.5rem;
+    place-content: center;
+}
+
+.gameInfo > div:first-of-type {
+    padding-right: 0.5rem;
+}
+
+.active {
+    cursor: grabbing !important;
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    user-select: auto;
+}
+
+@media (min-width: 300px) {
+    .socialLinks a {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 45rem) {
+    .row {
+        min-width: 50%;
+    }
+}
+
+@media (min-width: 90rem) {
+    .row {
+        min-width: 20%;
+    }
+}
