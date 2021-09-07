@@ -112,6 +112,7 @@ function setNextShow(weekData) {
 
     let showImg = countdownElement.querySelector("video");
     showImg.setAttribute("src", `./videos/${showNameFormatted}.mp4`);
+    showImg.setAttribute("poster", `./images/${showNameFormatted}.png`);
 
     let countdownHTML = countdown.create(showTime, showName, daysTill);
     countdownElement
