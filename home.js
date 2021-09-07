@@ -296,13 +296,13 @@ slider.addEventListener("mousemove", (e) => {
 });
 
 //carousel buttons feature
-// Current Bug: only scrolls one show back when clicking on left button(<<) on last page
+// Current Bug: only scrolls one show back when clicking on left button(<<) on last page, mitigated by > 5 in first if statement
 function carouselScroll(value, htmlElement) {
     let curX = htmlElement.scrollLeft;
 
     let curPage = Math.floor(curX / carouselWidth);
     let curShow = 0;
-    console.log(`curPageBefore: ${curPage}`);
+    // console.log(`curPageBefore: ${curPage}`);
     if (curX % carouselWidth > 5 && value === -1) {
         curPage = Math.floor(curX / carouselWidth);
     } else {
@@ -335,11 +335,11 @@ function carouselScroll(value, htmlElement) {
 
     let showElement = htmlElement.querySelector(`.row:nth-of-type(${curShow})`);
     showElement.scrollIntoView({ behavior: "smooth", inline: "end" });
-    console.log(
-        `curShow: ${curShow}, curPageAfter: ${curPage}, curX: ${curX}, caroWidth: ${carouselWidth}, mod: ${
-            curX % carouselWidth
-        }`
-    );
+    // console.log(
+    //     `curShow: ${curShow}, curPageAfter: ${curPage}, curX: ${curX}, caroWidth: ${carouselWidth}, mod: ${
+    //         curX % carouselWidth
+    //     }`
+    // );
     checkBounds();
     //Check bounds
 }
@@ -358,7 +358,7 @@ function checkBounds() {
         buttons[0].classList.add("hidden");
     }
 
-    console.log(`left: ${slider.scrollLeft}, width: ${scrollEnd}`);
+    // console.log(`left: ${slider.scrollLeft}, width: ${scrollEnd}`);
 
     if (slider.scrollLeft === scrollEnd) {
         buttons[1].classList.add("hidden");
