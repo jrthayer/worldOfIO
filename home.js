@@ -1,3 +1,23 @@
+//------------//------------//------------//------------//------------
+//      TABLE OF CONTENTS
+//------------//------------//------------//------------//------------
+//      0. Global Values
+//          0.1 Initialize
+//      1. Features
+//          1.1 Schedule
+//          1.2 Countdown
+//             1.2a Next Show
+//          1.3 Carousel
+//          1.4 Resize
+//------------//------------//------------//------------//------------
+
+//------------//------------//------------//------------
+//      0. Global Values
+//------------//------------//------------//------------
+import * as schedule from "./schedule.js";
+import * as countdown from "./countdown.js";
+
+// Schedule in utc
 let utcTimes = [
     [],
     [[1380, "The Nova Hellscape"]],
@@ -8,53 +28,73 @@ let utcTimes = [
     [[1200, "Miss Demeanor"]],
 ];
 
+// Carousel Dimensions
 let carouselWidth = 0;
 let dayWidth = 0;
-let dayLength = 0;
+let shownDays = 0;
+let totalDays = 0;
 
 //------------//------------//------------
-//  1.2 Initialize Components
+//  0.1 Initialize
 //------------//------------//------------
-
-import * as schedule from "./schedule.js";
-import * as countdown from "./countdown.js";
-
-let scheduleElement = document.querySelector("#schedule-section");
-let countdownElement = document.querySelector("#countdown-container");
-
+// Schedule
 let convertedWeek = schedule.convertWeek(utcTimes);
+let scheduleElement = document.querySelector("#schedule-section");
 let scheduleHTML = schedule.createSchedule(convertedWeek);
+scheduleElement.appendChild(scheduleHTML);
+
+// Countdown
+let countdownElement = document.querySelector("#countdown-container");
+setNextShow(convertedWeek);
+
+// Resize
+let carouselHtml = scheduleHTML.querySelector(".schedule-carousel-days");
+resized();
+
+window.addEventListener("resize", () => {
+    resized();
+});
+
+//------------//------------//------------//------------
+//      1. Features
+//------------//------------//------------//------------
+
+//------------//------------//------------
+//  1.1 Schedule
+//------------//------------//------------
+
+//Add Fontawesome Icons to buttons
 let leftIcon = document.createElement("i");
 leftIcon.classList.add("fas", "fa-angle-double-left");
 let rightIcon = document.createElement("i");
 rightIcon.classList.add("fas", "fa-angle-double-right");
 
-let carouselHtml = scheduleHTML.querySelector(".schedule-carousel-days");
 let leftBtn = scheduleHTML.querySelector("button:first-of-type");
 leftBtn.appendChild(leftIcon);
 leftBtn.addEventListener("click", () => carouselScroll(-1, carouselHtml));
+
 let rightBtn = scheduleHTML.querySelector("button:last-of-type");
 rightBtn.appendChild(rightIcon);
 rightBtn.addEventListener("click", () => carouselScroll(1, carouselHtml));
-scheduleElement.appendChild(scheduleHTML);
 
-setNextShow();
-
-function setNextShow() {
-    let next = nextShow(convertedWeek);
+//------------//------------//------------
+//  1.2 Countdown
+//------------//------------//------------
+function setNextShow(weekData) {
+    let next = nextShow(weekData);
     let showDay = next[0];
-    let showTime = convertedWeek[showDay][next[1]][0];
-    let showName = convertedWeek[showDay][next[1]][1];
+    let showTime = weekData[showDay][next[1]][0];
+    let showName = weekData[showDay][next[1]][1];
     let daysTill = daysTillShow(showDay);
 
     let showNameFormatted = showName.replace(/\s/g, "");
     showNameFormatted = showNameFormatted.replace("'", "");
     showNameFormatted =
         showNameFormatted[0].toLowerCase() + showNameFormatted.substring(1);
-    console.log(showNameFormatted);
+
     let showImg = countdownElement.querySelector("video");
     showImg.setAttribute("src", `./videos/${showNameFormatted}.mp4`);
-    console.log(showImg);
+
     let countdownHTML = countdown.create(showTime, showName, daysTill);
     countdownElement
         .querySelector(".countdown-data")
@@ -70,9 +110,9 @@ function setNextShow() {
     }, 1000);
 }
 
-//------------//------------//------------
-//  2.1 Next Show
-//------------//------------//------------
+//------------//------------
+//  1.2a Next Show
+//------------//------------
 
 //Info: determines the next show on the schedule
 //------------
@@ -154,74 +194,17 @@ function daysTillShow(eventDay) {
     return daysBetween;
 }
 
-const slider = document.querySelector(".schedule-carousel-days");
-let isDown = false;
-let startX;
-let scrollLeft;
-
-slider.addEventListener("mousedown", (e) => {
-    isDown = true;
-    slider.classList.add("active");
-    startX = e.pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
-    console.log("mouse down");
-});
-slider.addEventListener("mouseleave", () => {
-    isDown = false;
-    slider.classList.remove("active");
-});
-slider.addEventListener("mouseup", () => {
-    isDown = false;
-    slider.classList.remove("active");
-});
-slider.addEventListener("mousemove", (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - slider.offsetLeft;
-    const walk = x - startX;
-    slider.scrollLeft = scrollLeft - walk;
-    console.log(slider.scrollLeft);
-});
-
-//carousel
-function carouselScroll(value, htmlElement) {
-    let curX = htmlElement.scrollLeft;
-    console.log(`curX: ${curX}, dayLength: ${dayLength}`);
-    let curShow = Math.floor(curX / dayLength);
-    console.log(dayLength);
-    let scrollValue = 0;
-    if (curX % dayLength !== 0 && value === -1) {
-        scrollValue = curShow * dayLength;
-    } else {
-        scrollValue = (curShow + value) * dayLength;
-    }
-    console.log(
-        `scrollValue: ${scrollValue}, curShow:${curShow}, value: ${value}, dayLength:${dayLength}`
-    );
-
-    if (curX % dayLength !== 0) {
-        // scrollValue += scrollValue + value * (curX % dayLength);
-        // console.log(curX % dayLength);
-    }
-
-    htmlElement.scrollTo({ top: 0, left: scrollValue, behavior: "smooth" });
-}
-
-//
-let videoBanners = document.querySelectorAll(".fullscreenAsset");
-let navBarHeight = getComputedStyle(document.documentElement).getPropertyValue(
-    "--navHeight"
-);
-
-navBarHeight = parseInt(navBarHeight);
-
-// resize
-function resizeFunctions() {
+//------------//------------//------------
+//  1.3 Resize
+//------------//------------//------------
+function resized() {
     videoBannerCheck();
     carouselCheck(carouselHtml);
 }
 
 function videoBannerCheck() {
+    let videoBanners = document.querySelectorAll(".fullscreenAsset");
+
     let intViewportHeight = window.innerHeight;
     let intViewportWidth = document.body.clientWidth;
 
@@ -241,28 +224,99 @@ function videoBannerCheck() {
 }
 
 function carouselCheck(htmlElement) {
-    let scrollWidth = htmlElement.scrollWidth;
-    carouselWidth = parseInt(scrollWidth);
+    carouselWidth = getComputedStyle(htmlElement).getPropertyValue("width");
+    carouselWidth = parseInt(carouselWidth);
 
-    let shownWidth = getComputedStyle(htmlElement).getPropertyValue("width");
-    shownWidth = parseInt(shownWidth);
-
+    //individual day dimensions
     let dayElement = htmlElement.querySelector(".row");
     dayWidth = getComputedStyle(dayElement).getPropertyValue("width");
     dayWidth = parseInt(dayWidth);
-    console.log(dayWidth);
 
-    let totalDays = Math.floor(scrollWidth / dayWidth);
-    let shownDays = Math.floor(shownWidth / dayWidth);
-    console.log(totalDays);
-    console.log(shownDays);
-
-    // dayLength = (scrollWidth - shownWidth) / (totalDays - shownDays);
-    // dayLength = Math.floor(dayLength);
-    dayLength = shownWidth;
-    // console.log(`${scrollWidth - shownWidth} days: ${totalDays - shownDays}`);
-    // console.log(dayLength);
+    //days on schedule calc
+    let scrollWidth = htmlElement.scrollWidth;
+    totalDays = Math.floor(scrollWidth / dayWidth);
+    shownDays = Math.floor(carouselWidth / dayWidth);
+    console.log(
+        `scrollWidth: ${scrollWidth}, dayWidth: ${dayWidth}, carouselWidth: ${carouselWidth}`
+    );
+    console.log(`totalDays: ${totalDays}, shownDays: ${shownDays}`);
 }
 
-resizeFunctions();
-window.addEventListener("resize", resizeFunctions);
+//------------//------------//------------
+//  1.4 Carousel
+//------------//------------//------------
+
+//carousel drag feature
+const slider = document.querySelector(".schedule-carousel-days");
+let isDown = false;
+let startX;
+let scrollLeft;
+
+slider.addEventListener("mousedown", (e) => {
+    isDown = true;
+    slider.classList.add("active");
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+});
+slider.addEventListener("mouseleave", () => {
+    isDown = false;
+    slider.classList.remove("active");
+});
+slider.addEventListener("mouseup", () => {
+    isDown = false;
+    slider.classList.remove("active");
+});
+slider.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = x - startX;
+    slider.scrollLeft = scrollLeft - walk;
+});
+
+//carousel buttons feature
+// Current Bug: only scrolls one show back when clicking on left button(<<) on last page
+function carouselScroll(value, htmlElement) {
+    let curX = htmlElement.scrollLeft;
+
+    let curPage = Math.floor(curX / carouselWidth);
+    let curShow = 0;
+    console.log(`curPageBefore: ${curPage}`);
+    if (curX % carouselWidth > 5 && value === -1) {
+        curPage = Math.floor(curX / carouselWidth);
+    } else {
+        curPage = Math.floor(curX / carouselWidth) + value;
+    }
+
+    if (curPage > totalDays) {
+        curPage = totalDays;
+    }
+
+    if (curPage < 0) {
+        curPage = 0;
+    }
+
+    curShow = curPage * shownDays + shownDays;
+
+    // if (value === -1) {
+    //     curShow = curPage * shownDays + 1;
+    // } else {
+    //     curShow = curPage * shownDays + shownDays;
+    // }
+
+    if (curShow < 1) {
+        curShow = 1;
+    }
+
+    if (curShow >= totalDays) {
+        curShow = totalDays;
+    }
+
+    let showElement = htmlElement.querySelector(`.row:nth-of-type(${curShow})`);
+    showElement.scrollIntoView({ behavior: "smooth", inline: "end" });
+    console.log(
+        `curShow: ${curShow}, curPageAfter: ${curPage}, curX: ${curX}, caroWidth: ${carouselWidth}, mod: ${
+            curX % carouselWidth
+        }`
+    );
+}
