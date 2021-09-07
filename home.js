@@ -105,6 +105,15 @@ function setNextShow(weekData) {
     let showName = weekData[showDay][next[1]][1];
     let daysTill = daysTillShow(showDay);
 
+    //One Show Edge Case
+    if (daysTill === 0) {
+        let time = new Date();
+        let minutes = time.getMinutes() + time.getHours() * 60;
+        if (minutes > showTime) {
+            daysTill = 7;
+        }
+    }
+
     let showNameFormatted = showName.replace(/\s/g, "");
     showNameFormatted = showNameFormatted.replace("'", "");
     showNameFormatted =
@@ -151,7 +160,6 @@ function nextShow(schedule) {
 
     while (found !== true) {
         let curDay = day + loopNum;
-
         //accounts for being greater than sun === 6
         if (curDay > 6) curDay = curDay - 7;
 

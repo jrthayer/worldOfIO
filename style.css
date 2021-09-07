@@ -49,6 +49,7 @@ h3 {
 
 html {
     scroll-behavior: smooth;
+    font-family: sans-serif;
 }
 
 html,
@@ -289,17 +290,15 @@ nav a:first-of-type {
     z-index: 20;
 }
 .countdown-data > * {
-    padding: 1rem;
-    font-size: 7vh;
+    padding: 1rem 0rem;
+    font-size: 6vh;
 }
 
 #countdown {
-    width: 100%;
     text-align: center;
 }
 
 #countdown-container h1 {
-    width: 100%;
     padding-bottom: 1rem;
     border-bottom: solid 2px var(--textColor);
 
@@ -439,6 +438,10 @@ nav a:first-of-type {
 
     #schedule-container button {
         --size: 35px;
+    }
+
+    .countdown-data > * {
+        padding: 1rem;
     }
 }
 
