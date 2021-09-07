@@ -133,7 +133,7 @@ function setNextShow(weekData) {
             document.querySelector("#countdown").remove();
             countdown.data.finished = false;
             clearInterval(intervalID);
-            setNextShow();
+            setNextShow(weekData);
         }
     }, 1000);
 }
