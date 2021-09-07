@@ -47,12 +47,30 @@ scheduleElement.appendChild(scheduleHTML);
 let countdownElement = document.querySelector("#countdown-container");
 setNextShow(convertedWeek);
 
-// Resize
+//Carousel
 let carouselHtml = scheduleHTML.querySelector(".schedule-carousel-days");
-resized();
+
+checkBounds();
+
+let timer = null;
+carouselHtml.addEventListener(
+    "scroll",
+    function () {
+        if (timer !== null) {
+            clearTimeout(timer);
+        }
+        timer = setTimeout(function () {
+            checkBounds();
+        }, 150);
+    },
+    false
+);
+
+// Resize
+resized(carouselHtml);
 
 window.addEventListener("resize", () => {
-    resized();
+    resized(carouselHtml);
 });
 
 //------------//------------//------------//------------
@@ -197,7 +215,7 @@ function daysTillShow(eventDay) {
 //------------//------------//------------
 //  1.3 Resize
 //------------//------------//------------
-function resized() {
+function resized(carouselHtml) {
     videoBannerCheck();
     carouselCheck(carouselHtml);
 }
@@ -236,10 +254,10 @@ function carouselCheck(htmlElement) {
     let scrollWidth = htmlElement.scrollWidth;
     totalDays = Math.floor(scrollWidth / dayWidth);
     shownDays = Math.floor(carouselWidth / dayWidth);
-    console.log(
-        `scrollWidth: ${scrollWidth}, dayWidth: ${dayWidth}, carouselWidth: ${carouselWidth}`
-    );
-    console.log(`totalDays: ${totalDays}, shownDays: ${shownDays}`);
+    // console.log(
+    //     `scrollWidth: ${scrollWidth}, dayWidth: ${dayWidth}, carouselWidth: ${carouselWidth}`
+    // );
+    // console.log(`totalDays: ${totalDays}, shownDays: ${shownDays}`);
 }
 
 //------------//------------//------------
@@ -272,6 +290,8 @@ slider.addEventListener("mousemove", (e) => {
     const x = e.pageX - slider.offsetLeft;
     const walk = x - startX;
     slider.scrollLeft = scrollLeft - walk;
+    //Check bounds
+    checkBounds();
 });
 
 //carousel buttons feature
@@ -319,4 +339,27 @@ function carouselScroll(value, htmlElement) {
             curX % carouselWidth
         }`
     );
+    checkBounds();
+    //Check bounds
+}
+
+function checkBounds() {
+    const slider = document.querySelector(".schedule-carousel-days");
+    let carouselHtml = scheduleHTML.querySelector(".schedule-carousel-days");
+    let scrollEnd = carouselHtml.scrollWidth - carouselHtml.clientWidth;
+
+    let buttons = document.querySelectorAll("button");
+    for (let x = 0; x < buttons.length; x++) {
+        buttons[x].classList.remove("hidden");
+    }
+
+    if (slider.scrollLeft === 0) {
+        buttons[0].classList.add("hidden");
+    }
+
+    console.log(`left: ${slider.scrollLeft}, width: ${scrollEnd}`);
+
+    if (slider.scrollLeft === scrollEnd) {
+        buttons[1].classList.add("hidden");
+    }
 }

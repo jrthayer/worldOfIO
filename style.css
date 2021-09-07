@@ -422,6 +422,10 @@ nav a:first-of-type {
     user-select: auto;
 }
 
+.hidden {
+    display: none !important;
+}
+
 /* 
 //------------//------------//------------
     6. Media Queries
