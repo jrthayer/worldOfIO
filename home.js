@@ -22,7 +22,7 @@ let utcTimes = [
     [],
     [[1380, "The Nova Hellscape"]],
     [[1200, "Mainframe Of Atlas"]],
-    [[1440, "Goblins Of Io"]],
+    [[1440, "Goblins Of IO"]],
     [[1380, "Spire Of Euclid"]],
     [[1380, "Shadow Of Asmodia"]],
     [[1200, "Miss Demeanor"]],
