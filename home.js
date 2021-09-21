@@ -20,7 +20,7 @@ import * as countdown from "./countdown.js";
 // Schedule in utc
 let utcTimes = [
     [],
-    [[1380, "The Nova Hellscape"]],
+    [],
     [],
     [[1440, "Goblins Of IO"]],
     [[1380, "Spire Of Euclid"]],
