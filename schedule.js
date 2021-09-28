@@ -242,6 +242,10 @@ export function createDaySchedule(day, daySchedule) {
         showNameFormatted =
             showNameFormatted[0].toLowerCase() + showNameFormatted.substring(1);
         showImg.src = `./images/${showNameFormatted}.png`;
+        showImg.addEventListener("error", function (event) {
+            event.target.src = "./images/worldOfIO.png";
+            event.onerror = null;
+        });
         showImg.setAttribute("draggable", false);
         data.appendChild(showImg);
 
