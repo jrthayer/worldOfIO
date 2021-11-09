@@ -21,11 +21,14 @@ import * as countdown from "./countdown.js";
 let utcTimes = [
     [],
     [],
+    [[1440, "Spire Of Euclid"]],
     [],
-    [[1440, "Goblins Of IO"]],
-    [[1380, "Spire Of Euclid"]],
-    [[1260, "The Altered Ballad"]],
-    [[1200, "Miss Demeanor"]],
+    [
+        [60, "Goblins Of IO"],
+        // [1440, "Spire Of Euclid"],
+    ],
+    [[1320, "The Altered Ballad"]],
+    [[1260, "Miss Demeanor"]],
 ];
 
 // Carousel Dimensions
