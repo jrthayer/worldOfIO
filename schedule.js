@@ -118,15 +118,22 @@ export function convertToTime(minutes) {
     }
 
     var ampm = "am";
-    if (hours > 12) {
-        hours = hours - 12;
+
+    if (hours >= 12) {
         ampm = "pm";
-    } else if (hours == 12) {
-        ampm = "pm";
+
+        if (hours !== 12) {
+            hours = hours - 12;
+
+            if (hours === 12) {
+                ampm = "am";
+            }
+        }
     }
 
     if (hours == 0) {
         hours = 12;
+        ampm = "am";
     }
 
     var time;
