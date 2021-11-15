@@ -21,11 +21,11 @@ import * as countdown from "./countdown.js";
 let utcTimes = [
     [],
     [],
-    [[1440, "Spire Of Euclid"]],
+    [[1440, "Bronn"]],
     [],
     [
         [60, "Goblins Of IO"],
-        // [1440, "Spire Of Euclid"],
+        [1440, "Spire Of Euclid"],
     ],
     [[1320, "The Altered Ballad"]],
     [[1260, "Miss Demeanor"]],
