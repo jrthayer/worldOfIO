@@ -28,7 +28,9 @@ let utcTimes = [
         // [1440, "Spire Of Euclid"],
     ],
     [[1320, "The Altered Ballad"]],
-    [[1260, "Miss Demeanor"]],
+    [
+        //[1260, "Miss Demeanor"]
+    ],
 ];
 
 // Carousel Dimensions
