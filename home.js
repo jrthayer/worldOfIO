@@ -24,13 +24,13 @@ let utcTimes = [
     [[1440, "Bronn"]],
     [],
     [
-        // [60, "Goblins Of IO"],
-        // [1440, "Spire Of Euclid"],
+        [60, "Goblins Of IO"],
+        [1440, "Spire Of Euclid"],
     ],
-    [[1320, "The Altered Ballad"]],
     [
-        //[1260, "Miss Demeanor"]
+        // [1320, "The Altered Ballad"]
     ],
+    [[1260, "Miss Demeanor"]],
 ];
 
 // Carousel Dimensions
