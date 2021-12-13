@@ -20,8 +20,8 @@ import * as countdown from "./countdown.js";
 // Schedule in utc
 let utcTimes = [
     [],
-    [],
     [[1440, "Bronn"]],
+    [],
     [],
     [
         [60, "Goblins Of IO"],
