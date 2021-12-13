@@ -20,7 +20,7 @@ import * as countdown from "./countdown.js";
 // Schedule in utc
 let utcTimes = [
     [],
-    [[1260, "Bronn"]],
+    [[1440, "Bronn"]],
     [],
     [],
     [
