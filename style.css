@@ -239,6 +239,19 @@ nav a:first-of-type {
     padding-right: 0.5rem;
 }
 
+#hero img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+    height: 100%;
+    width: auto;
+}
+
+#hero video {
+    filter: brightness(70%);
+}
+
 .bannerHeight {
     height: 100% !important;
     width: auto !important;

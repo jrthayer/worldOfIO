@@ -27,9 +27,7 @@ let utcTimes = [
         [60, "Goblins Of IO"],
         [1440, "Spire Of Euclid"],
     ],
-    [
-        // [1320, "The Altered Ballad"]
-    ],
+    [[1080, "The Shadow Invasion"]],
     [[1260, "Miss Demeanor"]],
 ];
 
