@@ -20,15 +20,19 @@ import * as countdown from "./countdown.js";
 // Schedule in utc
 let utcTimes = [
     [],
-    [[1440, "Bronn"]],
     [],
+    [[1440, "Bronn"]],
     [],
     [
         [60, "Goblins Of IO"],
-        [1440, "Spire Of Euclid"],
+        // [1440, "Spire Of Euclid"],
     ],
-    [[1080, "The Shadow Invasion"]],
-    [[1260, "Miss Demeanor"]],
+    [
+        // [1080, "The Shadow Invasion"]
+    ],
+    [
+        // [1260, "Miss Demeanor"]
+    ],
 ];
 
 // Carousel Dimensions
