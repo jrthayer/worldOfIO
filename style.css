@@ -15,6 +15,7 @@
         4.6 Schedule
             4.6a Buttons
             4.6b Scrollbar
+        4.7 News
     5. State Classes
     6. Media Queries
 */
@@ -58,6 +59,11 @@ body {
     margin: 0;
     background-color: var(--textColor);
     color: var(--textColor);
+}
+
+body {
+    background-image: url(./images/galaxy_2.jpg);
+    background-size: cover;
 }
 
 a,
@@ -119,11 +125,13 @@ a:hover {
 */
 .section {
     position: relative;
-    min-height: 100px;
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
     width: 100%;
     padding-bottom: 0;
     overflow: hidden;
+    padding-top: var(--navHeight);
+    padding-bottom: 1rem;
 }
 
 footer {
@@ -216,6 +224,10 @@ nav a:first-of-type {
     4.3 Hero
 //------------//------------
 */
+#hero {
+    padding-top: 0;
+}
+
 #hero a {
     position: absolute;
     top: 65%;
@@ -277,7 +289,7 @@ nav a:first-of-type {
     border-radius: 1rem;
     transform: translateX(-50%);
 
-    background-color: rgba(var(--color700-num), 0.8);
+    background-color: rgba(var(--color700-num), 1);
 
     z-index: var(--top-z-index);
 }
@@ -420,6 +432,38 @@ nav a:first-of-type {
 .schedule-carousel-days::-webkit-scrollbar-track {
     border-left: none;
     background-color: transparent;
+}
+
+/* 
+//------------//------------
+    4.7 News
+//------------//------------
+*/
+#news article {
+    padding: 2rem;
+    background-color: rgba(var(--color700-num), 0.8);
+
+    width: calc(100% - 2 * 3rem);
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+#news h2 {
+    font-size: 3rem;
+    text-align: center;
+    width: calc(100% + 4rem);
+    background-color: rgba(var(--color700-num), 1);
+    padding: 1rem 0;
+
+    margin: 0 -2rem;
+    margin-top: -2rem;
+
+    border: 2px solid var(--textColor);
+}
+
+.infoGroup {
+    padding: 1rem;
+    border-bottom: 1px solid var(--textColor);
 }
 
 /* 
